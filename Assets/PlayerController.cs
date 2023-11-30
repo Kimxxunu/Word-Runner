@@ -15,6 +15,23 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("현재 interval + " + ShootInterval);
+        // 게임 시작 후 경과 시간에 따라 ShootInterval 조정
+        float elapsedTime = Time.time;
+        float softcap = 2f; // ShootInterval의 softcap 설정
+        float hardcap = 1f; // ShootInterval의 hardcap 설정
+
+        if (ShootInterval > softcap)
+        {
+            // softcap보다 클 때는 정상적으로 감소
+            ShootInterval = Mathf.Max(softcap, ShootInterval * Mathf.Pow(0.9f, Mathf.FloorToInt(elapsedTime / 60f)));
+        }
+        else
+        {
+            // softcap 이하일 때는 더 느리게 감소
+            ShootInterval = Mathf.Max(hardcap, ShootInterval * Mathf.Pow(0.95f, Mathf.FloorToInt(elapsedTime / 60f)));
+        }
+
         if (Time.time - lastShootTime >= ShootInterval)
         {
             Shoot();
@@ -22,12 +39,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
     void Shoot()
     {
         // SimpleHelvetica 인스턴스를 생성하고 GenerateRandomWord() 메서드 호출
         SimpleHelvetica word = Instantiate(Word, transform.position + new Vector3(0f, 10f, 100f), Quaternion.identity);
         //word.GenerateRandomWord();  // 단어 생성 및 표시
         word.Text = words[Random.Range(0, words.Length)];
+        word.name = word.Text;
         word.GenerateText();
 
         // 랜덤한 위치로 이동
