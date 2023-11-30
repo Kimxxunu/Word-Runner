@@ -5,11 +5,10 @@ using UnityEngine;
 public class MapCreator : MonoBehaviour
 {
     private float timer = 0;
-
     public float speed = 2f;
 
     private float mapSpawnTime;
-    public Vector3 mapSpawnPosition = new Vector3(0, 4, 40);
+    public Vector3 mapSpawnPosition = new Vector3(0, 0, 80);
     public GameObject Map_Prefab;
     // Start is called before the first frame update
     void Start()
@@ -31,6 +30,6 @@ public class MapCreator : MonoBehaviour
 
     private void SpeedCal()
     {
-        mapSpawnTime = 10 / speed;
+        mapSpawnTime = 6 / speed;
     }
 }
