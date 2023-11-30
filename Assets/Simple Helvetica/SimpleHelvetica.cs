@@ -10,7 +10,7 @@ using System.Collections;
 public class SimpleHelvetica : MonoBehaviour {
 	
 	[HideInInspector]
-	public string Text = "SIMPLE HELVETICA\n \nby Studio Pepwuper";
+	public string Text;
 	[HideInInspector]
 	public float CharacterSpacing = 4f; //spacing between the characters
 	[HideInInspector]

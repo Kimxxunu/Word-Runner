@@ -25,8 +25,10 @@ public class PlayerController : MonoBehaviour
 {
     // SimpleHelvetica 인스턴스를 생성하고 GenerateRandomWord() 메서드 호출
     SimpleHelvetica word = Instantiate(Word, transform.position + new Vector3(0f, 10f, 100f), Quaternion.identity);
-    word.GenerateRandomWord();  // 단어 생성 및 표시
-
+    //word.GenerateRandomWord();  // 단어 생성 및 표시
+    word.Text =  words[Random.Range(0, words.Length)];
+    word.GenerateText();
+    
     // 랜덤한 위치로 이동
     float randomX = Random.Range(-30f, 30f);
     float randomY = Random.Range(10f, 45f);
