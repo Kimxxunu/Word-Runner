@@ -6,12 +6,16 @@ public class TMPInputFieldManager : MonoBehaviour
 {
     public TMP_InputField tmpInputField; // 인스펙터에서 설정할 TMP_InputField
     private PlayerController _playerController;
+    private Animator _animator;
 
     void Start()
     {
         // TMP_InputField의 onEndEdit 이벤트에 메서드 연결
         tmpInputField.onEndEdit.AddListener(OnEndEdit);
-        _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+
+        GameObject player = GameObject.Find("Player");
+        _playerController = player.GetComponent<PlayerController>();
+        _animator = player.GetComponent<Animator>();
     }
 
     // 엔터 키가 눌렸을 때 호출되는 메서드
@@ -19,10 +23,21 @@ public class TMPInputFieldManager : MonoBehaviour
     {
         if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))){
             // 엔터 키가 눌렸고, 입력된 텍스트 길이가 1글자보다 클 때 로직 실행
-            Debug.Log("Entered Text: " + text);
             if (text.Length > 1)
             {
                 GameObject word = GameObject.Find(text);
+                float distance = Vector3.Distance(GameObject.Find("Player").transform.position, word.transform.position);
+                if (distance <= 20)
+                {
+                    int random = Random.Range(0, 2);
+                    string kick = random == 0 ? "Kick1" : "Kick2";
+                    _animator.SetTrigger(kick);
+                }
+                else
+                {
+                    _animator.SetTrigger("Laser");
+                }
+                
                 if (word != null)
                 {
                     Destroy(word);
@@ -40,4 +55,6 @@ public class TMPInputFieldManager : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(tmpInputField.gameObject);
         }
     }
+
+
 }

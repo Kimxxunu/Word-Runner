@@ -30,8 +30,6 @@ public class PlayerController : MonoBehaviour
             Time.timeScale = 0.1f;
         }
     }
-
-    
     
     public void reduceShootInterval()
     {
