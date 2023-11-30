@@ -23,10 +23,12 @@ public class GameManager : MonoBehaviour
 
     //게임 내에서 씬이동시 유지하고 픈 골드 값
     public int score;
+    public int health;
     
     private void Start()
     {
         score = 0;
+        health = 3;
     }
 
 }

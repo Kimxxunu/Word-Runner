@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     private float lastShootTime;
 
+    
     // words 배열 정의
     string[] words = { "apple", "nice", "good", "yes", "why", "sunwoo", "wonderful", "mix", "ice", "bag" };
 
@@ -23,8 +24,15 @@ public class PlayerController : MonoBehaviour
             Shoot();
             lastShootTime = Time.time;
         }
+
+        if (GameManager.instance.health <= 0)
+        {
+            Time.timeScale = 0.1f;
+        }
     }
 
+    
+    
     public void reduceShootInterval()
     {
         float softcap = 2f; // ShootInterval의 softcap 설정
@@ -41,10 +49,6 @@ public class PlayerController : MonoBehaviour
             ShootInterval = Mathf.Max(hardcap, ShootInterval - 0.7f);
         }
     }
-
-
-
-
 
     void Shoot()
     {

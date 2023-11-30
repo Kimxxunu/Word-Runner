@@ -27,6 +27,8 @@ public class WordController : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
+            Debug.Log("확인 = "+transform.name);
+            GameManager.instance.health--;
             // 플레이어와 충돌하면 오브젝트를 제거 또는 비활성화
             Destroy(gameObject);
         }
