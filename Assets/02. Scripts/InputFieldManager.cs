@@ -27,20 +27,23 @@ public class TMPInputFieldManager : MonoBehaviour
             {
                 GameObject word = GameObject.Find(text);
                 float distance = Vector3.Distance(GameObject.Find("Player").transform.position, word.transform.position);
+                float destroyTime;
                 if (distance <= 20)
                 {
                     int random = Random.Range(0, 2);
                     string kick = random == 0 ? "Kick1" : "Kick2";
                     _animator.SetTrigger(kick);
+                    destroyTime = 0.2f;
                 }
                 else
                 {
                     _animator.SetTrigger("Laser");
+                    destroyTime = 0.5f;
                 }
                 
                 if (word != null)
                 {
-                    Destroy(word);
+                    Destroy(word, destroyTime);
                     Debug.Log("word 삭제");
                     GameManager.instance.score++;
                     _playerController.reduceShootInterval();
