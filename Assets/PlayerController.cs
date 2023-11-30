@@ -46,17 +46,4 @@ public class PlayerController : MonoBehaviour
 }
 
 
-    // GenerateRandomWord 메서드 정의
-    void GenerateRandomWord()
-{
-    string randomWord = words[Random.Range(0, words.Length)];
-
-    // TextMesh 변수에 랜덤 단어 할당
-    TextMesh textMesh = FindObjectOfType<SimpleHelvetica>().TextMesh;
-    if (textMesh != null)
-    {
-        textMesh.text = randomWord;
-        FindObjectOfType<SimpleHelvetica>().GenerateText();
-    }
-}
 }

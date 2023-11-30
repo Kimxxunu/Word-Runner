@@ -90,12 +90,6 @@ public class SimpleHelveticaCustomEditor : Editor {
 		        }
 			}
 			*/
-
-			// 랜덤 단어 생성 버튼
-        if(GUILayout.Button("Generate Random Word", GUILayout.MaxWidth(200))) {
-            targetSH.GenerateRandomWord();
-        }
-
 			EditorGUILayout.Space();
 			
 			if (!targetSH.BoxColliderAdded){

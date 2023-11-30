@@ -210,7 +210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455505169}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -414,13 +414,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088152352}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.18793097, y: 0.0019342843, z: 0.018351536, w: 0.98200893}
-  m_LocalPosition: {x: -0.3, y: 12.05, z: -25.45}
+  m_LocalRotation: {x: -0.10926335, y: 0.00046915686, z: 0.018447232, w: 0.9938416}
+  m_LocalPosition: {x: -0.3, y: 13.71, z: -25.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -21.664, y: -0.191, z: 2.178}
+  m_LocalEulerAnglesHint: {x: -12.545, y: -0.182, z: 2.147}
 --- !u!1001 &1187691261
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -495,7 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b4d83e6491fd54ab09fe41764ac3f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Word: {fileID: 100218, guid: ce72191ecb9a24885b5711cd938314a3, type: 3}
+  Word: {fileID: 11400000, guid: c4aa69b50f66a004c911659197bb5f4a, type: 3}
   WordSpeed: 20
   ShootInterval: 5
 --- !u!136 &1194480937
@@ -721,6 +721,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1088152355}
   - {fileID: 494921166}
-  - {fileID: 455505170}
-  - {fileID: 2087463009}
   - {fileID: 1803751417}
+  - {fileID: 2087463009}
+  - {fileID: 455505170}
