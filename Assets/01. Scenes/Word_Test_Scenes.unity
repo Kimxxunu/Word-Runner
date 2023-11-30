@@ -508,7 +508,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Score
+  m_text: "\uBD80\uC21C \uAE00\uC790"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6a2bc5ec9b51bd041aa2bff80f302e13, type: 2}
   m_sharedMaterial: {fileID: -8237299846618163365, guid: 6a2bc5ec9b51bd041aa2bff80f302e13, type: 2}
