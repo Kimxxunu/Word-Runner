@@ -8077,6 +8077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 20
+  destoryParticle: {fileID: 1845955007268882, guid: ef464e8d641898b44b29ccff09deaf81, type: 3}
 --- !u!65 &6189143307145307808
 BoxCollider:
   m_ObjectHideFlags: 0

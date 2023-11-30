@@ -33,8 +33,8 @@ public class PlayerController : MonoBehaviour
     
     public void reduceShootInterval()
     {
-        float softcap = 2f; // ShootInterval의 softcap 설정
-        float hardcap = 1f; // ShootInterval의 hardcap 설정
+        float softcap = 3f; // ShootInterval의 softcap 설정
+        float hardcap = 2f; // ShootInterval의 hardcap 설정
 
         if (ShootInterval > softcap)
         {

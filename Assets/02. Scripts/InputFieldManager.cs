@@ -8,6 +8,7 @@ public class TMPInputFieldManager : MonoBehaviour
     private PlayerController _playerController;
     private Animator _animator;
 
+    public Transform firePosition;
     public GameObject firePrefab;
 
     void Start()
@@ -28,25 +29,25 @@ public class TMPInputFieldManager : MonoBehaviour
             if (text.Length > 1)
             {
                 GameObject word = GameObject.Find(text);
-                float distance = Vector3.Distance(GameObject.Find("Player").transform.position, word.transform.position);
-                
-                if (distance <= 20)
-                {
-                    int random = Random.Range(0, 2);
-                    string kick = random == 0 ? "Kick1" : "Kick2";
-                    _animator.SetTrigger(kick);
-                    Destroy(word, 0.3f);
-                }
-                else
-                {
-                    _animator.SetTrigger("Laser");
-                    GameObject prefab = Instantiate(firePrefab, GameObject.Find("Player").transform.position, Quaternion.identity);
-                    prefab.GetComponent<FireMovement>().target = word;
-                    prefab.transform.LookAt(word.transform.position);
-                }
-                
+                float distance;
                 if (word != null)
                 {
+                    distance = Vector3.Distance(GameObject.Find("Player").transform.position, word.transform.position);
+                    if (distance <= 20)
+                    {
+                        int random = Random.Range(0, 2);
+                        string kick = random == 0 ? "Kick1" : "Kick2";
+                        _animator.SetTrigger(kick);
+                        Destroy(word, 0.3f);
+                    }
+                    else
+                    {
+                        _animator.SetTrigger("Laser");
+                        GameObject prefab = Instantiate(firePrefab, firePosition.transform.position, Quaternion.identity);
+                        prefab.GetComponent<FireMovement>().target = word;
+                        prefab.transform.parent = firePosition;
+                        prefab.transform.LookAt(word.transform.position);
+                    }
                     Debug.Log("word 삭제");
                     GameManager.instance.score++;
                     _playerController.reduceShootInterval();

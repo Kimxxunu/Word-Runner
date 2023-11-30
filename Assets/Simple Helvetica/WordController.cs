@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 // WordController.cs
@@ -9,6 +10,8 @@ public class WordController : MonoBehaviour
 
     private GameObject player;
 
+    public GameObject destoryParticle;
+    
     void Start()
     {
         // Rigidbody 컴포넌트 추가
@@ -32,5 +35,10 @@ public class WordController : MonoBehaviour
             // 플레이어와 충돌하면 오브젝트를 제거 또는 비활성화
             Destroy(gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        Instantiate(destoryParticle, transform.position, transform.rotation);
     }
 }
