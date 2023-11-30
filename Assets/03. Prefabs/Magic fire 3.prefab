@@ -4851,7 +4851,7 @@ GameObject:
   - component: {fileID: 4131437023405378}
   - component: {fileID: 198853902749890928}
   - component: {fileID: 199034871832436634}
-  - component: {fileID: 917649966271839585}
+  - component: {fileID: 676563922004044696}
   m_Layer: 0
   m_Name: Magic fire 3
   m_TagString: Fire
@@ -9684,27 +9684,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!135 &917649966271839585
-SphereCollider:
+--- !u!114 &676563922004044696
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1654736843778140}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 1.165
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91adf2033f5dd3f44bea3968167ba7c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!1 &1675696825032014
 GameObject:
   m_ObjectHideFlags: 0

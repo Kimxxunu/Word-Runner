@@ -8,6 +8,8 @@ public class TMPInputFieldManager : MonoBehaviour
     private PlayerController _playerController;
     private Animator _animator;
 
+    public GameObject firePrefab;
+
     void Start()
     {
         // TMP_InputField의 onEndEdit 이벤트에 메서드 연결
@@ -27,23 +29,24 @@ public class TMPInputFieldManager : MonoBehaviour
             {
                 GameObject word = GameObject.Find(text);
                 float distance = Vector3.Distance(GameObject.Find("Player").transform.position, word.transform.position);
-                float destroyTime;
+                
                 if (distance <= 20)
                 {
                     int random = Random.Range(0, 2);
                     string kick = random == 0 ? "Kick1" : "Kick2";
                     _animator.SetTrigger(kick);
-                    destroyTime = 0.2f;
+                    Destroy(word, 0.3f);
                 }
                 else
                 {
                     _animator.SetTrigger("Laser");
-                    destroyTime = 0.5f;
+                    GameObject prefab = Instantiate(firePrefab, GameObject.Find("Player").transform.position, Quaternion.identity);
+                    prefab.GetComponent<FireMovement>().target = word;
+                    prefab.transform.LookAt(word.transform.position);
                 }
                 
                 if (word != null)
                 {
-                    Destroy(word, destroyTime);
                     Debug.Log("word 삭제");
                     GameManager.instance.score++;
                     _playerController.reduceShootInterval();
