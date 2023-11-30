@@ -106,6 +106,11 @@ public class SimpleHelvetica : MonoBehaviour {
 		
 		ResetText(); //reset before generating new text
 		
+		// 문자열의 전체 너비를 계산
+		float totalWidth = CalculateTotalWidth(Text);
+
+		// 시작 위치 조정 (가운데 정렬을 위해)
+		CharXLocation = -totalWidth / 2;
 		//check all letters
 		for (int ctr = 0; ctr <= Text.Length - 1; ctr++ ){			
 			
@@ -160,7 +165,34 @@ public class SimpleHelvetica : MonoBehaviour {
 		
 	}
 	
+	private float CalculateTotalWidth(string text) {
+		float totalWidth = 0;
 
+		foreach (char c in text) {
+			if (c == ' ') {
+				totalWidth += SpaceWidth;
+			} else {
+				string childObjectName = c.ToString();
+				GameObject letterObject = null;
+
+				if (childObjectName == "/") {
+					letterObject = transform.Find("_Alphabets/" + "slash").gameObject;
+				} else if (childObjectName == ".") {
+					letterObject = transform.Find("_Alphabets/" + "period").gameObject;
+				} else {
+					letterObject = transform.Find("_Alphabets/" + childObjectName).gameObject;
+				}
+
+				if (letterObject != null) {
+					Mesh mesh = letterObject.GetComponent<MeshFilter>().sharedMesh;
+					Bounds bounds = mesh.bounds;
+					totalWidth += bounds.size.x + CharacterSpacing;
+				}
+			}
+		}
+
+		return totalWidth;
+	}
 	void AddLetter(GameObject LetterObject){
 		
 		GameObject NewLetter = Instantiate(LetterObject, transform.position, transform.rotation) as GameObject;
