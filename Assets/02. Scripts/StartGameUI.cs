@@ -9,9 +9,12 @@ public class StartGameUI : MonoBehaviour
     public GameObject scoreTextObject;
     public GameObject healthTextObject;
     public GameObject startExitButton;
+    
 
     private Text scoreText;
     private Text healthText;
+    private Text highScoreText;
+    private Text CurrentScoreText;
 
     void Start()
     {
@@ -28,7 +31,7 @@ public class StartGameUI : MonoBehaviour
         // scoreTextObject와 healthTextObject에서 Text 컴포넌트 가져오기
         scoreText = scoreTextObject.GetComponent<Text>();
         healthText = healthTextObject.GetComponent<Text>();
-
+       
         // 초기 UI 가시성 설정
         SetUIVisibility(true);
     }
@@ -44,6 +47,7 @@ public class StartGameUI : MonoBehaviour
         if (playerController != null)
         {
             playerController.StartGame();
+            playerController.SetShootInterval(5f);
             playerController.isDead=false;
         }
         else
@@ -61,10 +65,10 @@ public class StartGameUI : MonoBehaviour
         Time.timeScale = 1f;
 
         CameraRotation camera = Camera.main.GetComponent<CameraRotation>();
-    if (camera != null)
-    {
+        if (camera != null)
+        {
         camera.StartCamera();
-    }
+        }
 
        
         // Fast Run 애니메이션을 재생시키는 코드
@@ -73,6 +77,19 @@ public class StartGameUI : MonoBehaviour
         {
         animator.SetTrigger("Run"); // 53번째 줄
         }
+    
+        // Find all instances of the "bridge1" prefab
+    GameObject[] bridge1Instances = GameObject.FindGameObjectsWithTag("bridge1");
+
+    foreach (GameObject bridgeInstance in bridge1Instances)
+    {
+        // MapMovement 실행
+        MapMovement currentMapMovement = bridgeInstance.GetComponent<MapMovement>();
+        if (currentMapMovement != null)
+        {
+            currentMapMovement.StartMovement();
+        }
+    }
 
         // MapMovement 실행
         MapMovement mapMovement = GameObject.Find("bridge1").GetComponent<MapMovement>();
@@ -117,6 +134,7 @@ public class StartGameUI : MonoBehaviour
         // GameStart 버튼과 StartExitGame 버튼 가시성 설정
         gameStartButton.SetActive(isVisible);
         startExitButton.SetActive(isVisible);
+       
 
         // tmpInputField, scoreTextObject, healthTextObject 가시성 설정
         tmpInputField.gameObject.SetActive(!isVisible);

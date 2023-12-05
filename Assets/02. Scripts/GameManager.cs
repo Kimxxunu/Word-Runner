@@ -1,6 +1,3 @@
-// GameManager 스크립트
-
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,12 +5,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
-    
-    // 게임 내에서 씬이동시 유지하고 픈 골드 값
+
+    // 게임 내에서 씬 이동 시 유지하고 싶은 골드 값
     public int score = 0;
     public int health = 3;
 
-
+    private int highScore = 0; // 최고 기록을 저장할 변수
 
     private void Awake()
     {
@@ -28,10 +25,25 @@ public class GameManager : MonoBehaviour
                 Destroy(this.gameObject);
         }
     }
+
+    // 최고 기록을 갱신하는 메서드
+    public void UpdateHighScore()
+    {
+        if (score > highScore)
+        {
+            highScore = score;
+        }
+    }
+
+    // 최고 기록을 가져오는 메서드
+    public int GetHighScore()
+    {
+        return highScore;
+    }
 }
 
 
-
+// // GameManager 스크립트
 
 // using System;
 // using System.Collections;
@@ -41,36 +53,26 @@ public class GameManager : MonoBehaviour
 // public class GameManager : MonoBehaviour
 // {
 //     public static GameManager instance = null;
-//     public CameraSetup cameraSetup; // CameraSetup 스크립트 참조
+    
+//     // 게임 내에서 씬이동시 유지하고 픈 골드 값
+//     public int score = 0;
+//     public int health = 3;
 
-
-//     void Start()
-//     {
-//         // GameManager가 카메라 설정 스크립트를 참조하도록 설정
-//         cameraSetup = GetComponent<CameraSetup>();
-//         if (cameraSetup != null)
-//         {
-//             // 시작 시에 카메라 설정 호출
-//             cameraSetup.SetupCamera();
-//         }
-//     }
 
 
 //     private void Awake()
 //     {
-//         if (instance == null) //instance가 null. 즉, 시스템상에 존재하고 있지 않을때
+//         if (instance == null)
 //         {
-//             instance = this; //내자신을 instance로 넣어줍니다.
-//             DontDestroyOnLoad(gameObject); //OnLoad(씬이 로드 되었을때) 자신을 파괴하지 않고 유지
+//             instance = this;
+//             DontDestroyOnLoad(gameObject);
 //         }
 //         else
 //         {
-//             if (instance != this) //instance가 내가 아니라면 이미 instance가 하나 존재하고 있다는 의미
-//                 Destroy(this.gameObject); //둘 이상 존재하면 안되는 객체이니 방금 AWake된 자신을 삭제
+//             if (instance != this)
+//                 Destroy(this.gameObject);
 //         }
 //     }
-
-//     //게임 내에서 씬이동시 유지하고 픈 골드 값
-//     public int score = 0;
-//     public int health = 3;
 // }
+
+

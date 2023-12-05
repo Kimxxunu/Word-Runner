@@ -131,6 +131,8 @@ public class PlayerController : MonoBehaviour
             Debug.LogError("GameOverUIController not found in the scene.");
         }
 
+    
+
        SetUIVisibility(true);
 
     }
@@ -148,5 +150,9 @@ public class PlayerController : MonoBehaviour
     {
         isStart = true;
     }
+    public void SetShootInterval(float interval)
+{
+    ShootInterval = interval;
+}
 
 }

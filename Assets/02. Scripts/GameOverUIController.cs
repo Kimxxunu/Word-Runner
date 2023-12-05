@@ -7,7 +7,11 @@ public class GameOverUIController : MonoBehaviour
     public Button RestartButton;  // 다시 시작 버튼
     public Button ExitButton;     // 종료 버튼
     private StartGameUI startGameUI; // StartGameUI 클래스 인스턴스를 저장할 변수
-    
+    public GameObject highScoreObject;
+    public GameObject currentScoreObject;
+
+    private Text highScoreText;
+    private Text CurrentScoreText;
 
     void Start()
     {
@@ -22,12 +26,18 @@ public class GameOverUIController : MonoBehaviour
 
         // 종료 버튼에 클릭 리스너 추가
         ExitButton.onClick.AddListener(ExitGame);
+
+        highScoreText = highScoreObject.GetComponent<Text>();
+        CurrentScoreText = currentScoreObject.GetComponent<Text>();
     }
 
     // 게임 다시 시작 메소드
     void RestartGame()
     {
-        
+    RestartButton.gameObject.SetActive(false);
+    ExitButton.gameObject.SetActive(false);
+    highScoreObject.SetActive(false);
+    currentScoreObject.SetActive(false);
         // StartGameUI 클래스의 GameStart 메소드 호출
     if (startGameUI != null)
     {
@@ -37,6 +47,8 @@ public class GameOverUIController : MonoBehaviour
     {
         Debug.LogError("StartGameUI not found in the scene.");
     }
+
+
     }
 
     // 게임 종료 메소드
@@ -55,6 +67,8 @@ public class GameOverUIController : MonoBehaviour
     {
         RestartButton.gameObject.SetActive(isVisible);
         ExitButton.gameObject.SetActive(isVisible);
+        highScoreObject.SetActive(isVisible);
+        currentScoreObject.SetActive(isVisible);
         // 여기에 다른 UI 요소들을 추가하고 설정할 수 있습니다.
     }
 
