@@ -6,11 +6,16 @@ public class GameOverUIController : MonoBehaviour
 {
     public Button RestartButton;  // 다시 시작 버튼
     public Button ExitButton;     // 종료 버튼
+    private StartGameUI startGameUI; // StartGameUI 클래스 인스턴스를 저장할 변수
+    
 
     void Start()
     {
         // UI 초기화
         SetUIVisibility(false);
+
+        // StartGameUI 스크립트 할당
+        startGameUI = GetComponent<StartGameUI>();
 
         // 다시 시작 버튼에 클릭 리스너 추가
         RestartButton.onClick.AddListener(RestartGame);
@@ -22,8 +27,16 @@ public class GameOverUIController : MonoBehaviour
     // 게임 다시 시작 메소드
     void RestartGame()
     {
-        // 현재 씬을 다시 로드
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
+        // StartGameUI 클래스의 GameStart 메소드 호출
+    if (startGameUI != null)
+    {
+        startGameUI.GameStart();
+    }
+    else
+    {
+        Debug.LogError("StartGameUI not found in the scene.");
+    }
     }
 
     // 게임 종료 메소드

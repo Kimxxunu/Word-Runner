@@ -8,7 +8,7 @@ public class MapCreator : MonoBehaviour
 {
     private float timer = 0;
     public float speed = 2f;
-    private bool isCreating = true; // 생성 여부를 나타내는 변수 추가
+    private bool isCreating = false; // 처음에 생성하지 않도록 false로 설정
 
     private float mapSpawnTime;
     public Vector3 mapSpawnPosition = new Vector3(0, 0, 80);
@@ -17,6 +17,7 @@ public class MapCreator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Map 생성 코드 등 필요한 초기화 작업 수행
     }
 
     // Update is called once per frame
@@ -40,19 +41,21 @@ public class MapCreator : MonoBehaviour
         mapSpawnTime = 6 / speed;
     }
 
-    // Change the name of the method to avoid conflicts
+    // 맵생성 멈춤
     public void StopMapCreation()
     {
         isCreating = false;
     }
-    
-    // Add another method with a different name
-    public void AnotherMethod()
+
+    // 맵생성 시작
+    public void StartCreation()
     {
-        // Your code here
+        isCreating = true;
     }
 }
 
+
+// // MapCreator.cs
 
 // using System.Collections;
 // using System.Collections.Generic;
@@ -62,10 +65,12 @@ public class MapCreator : MonoBehaviour
 // {
 //     private float timer = 0;
 //     public float speed = 2f;
+//     private bool isCreating = true; // 생성 여부를 나타내는 변수 추가
 
 //     private float mapSpawnTime;
 //     public Vector3 mapSpawnPosition = new Vector3(0, 0, 80);
 //     public GameObject Map_Prefab;
+
 //     // Start is called before the first frame update
 //     void Start()
 //     {
@@ -74,13 +79,16 @@ public class MapCreator : MonoBehaviour
 //     // Update is called once per frame
 //     void Update()
 //     {
-//         timer += Time.deltaTime;
-//         SpeedCal();
-//         if (timer > mapSpawnTime)
+//         if (isCreating)
 //         {
-//             GameObject map = Instantiate(Map_Prefab, mapSpawnPosition, Quaternion.identity);
-//             Destroy(map, 10f);
-//             timer = 0;
+//             timer += Time.deltaTime;
+//             SpeedCal();
+//             if (timer > mapSpawnTime)
+//             {
+//                 GameObject map = Instantiate(Map_Prefab, mapSpawnPosition, Quaternion.identity);
+//                 Destroy(map, 10f);
+//                 timer = 0;
+//             }
 //         }
 //     }
 
@@ -88,4 +96,17 @@ public class MapCreator : MonoBehaviour
 //     {
 //         mapSpawnTime = 6 / speed;
 //     }
+
+//     // Change the name of the method to avoid conflicts
+//     public void StopMapCreation()
+//     {
+//         isCreating = false;
+//     }
+    
+//     // Add another method with a different name
+//     public void AnotherMethod()
+//     {
+//         // Your code here
+//     }
 // }
+
