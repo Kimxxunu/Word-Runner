@@ -18,7 +18,17 @@ public class PlayerController : MonoBehaviour
     private float lastShootTime;
     public bool isDead = false; // 죽은 상태 여부를 나타내는 변수
 
-    string[] words = { "apple", "nice", "good", "yes", "why", "sunwoo", "wonderful", "mix", "ice", "bag" };
+    string[] words = {
+            "apple", "nice", "good", "yes", "why", "sunwoo", "wonderful", "mix", "ice", "bag",
+            "book", "unity", "game", "computer", "science", "knowledge", "future", "challenge", "journey", "victory",
+            "explore", "adventure", "discovery", "imagination", "creativity", "innovation", "technology", "communication", "community", "collaboration",
+            "artificial", "intelligence", "machine", "learning", "data", "analytics", "virtual", "reality", "augmented", "cybersecurity",
+            "health", "wellness", "fitness", "nutrition", "mindfulness", "meditation", "energy", "balance", "harmony", "happiness",
+            "environment", "sustainability", "climate", "earth", "ecosystem", "conservation", "renewable", "resources", "pollution", "global",
+            "identity", "individuality", "expression", "diversity", "equality", "inclusion", "freedom", "justice", "peace", "love",
+            "music", "art", "dance", "theater", "film", "literature", "poetry", "expression", "creativity", "inspiration",
+            "curiosity", "learning", "knowledge", "wisdom", "growth", "development", "evolution", "change", "challenge", "adaptation"
+        };
 
     // 추가된 부분: healthTextObject와 scoreTextObject 정의
     public GameObject healthTextObject;
@@ -120,6 +130,13 @@ public class PlayerController : MonoBehaviour
             mapCreator.StopMapCreation();
         }
 
+        // 현재 씬에 있는 word 인스턴스들 파괴
+        SimpleHelvetica[] wordsInScene = FindObjectsOfType<SimpleHelvetica>();
+        foreach (SimpleHelvetica word in wordsInScene)
+        {
+            Destroy(word.gameObject);
+        }
+
         // 게임 오버 UI를 찾아서 표시
         GameOverUIController gameOverUI = FindObjectOfType<GameOverUIController>();
         if (gameOverUI != null)
@@ -131,10 +148,7 @@ public class PlayerController : MonoBehaviour
             Debug.LogError("GameOverUIController not found in the scene.");
         }
 
-    
-
-       SetUIVisibility(true);
-
+        SetUIVisibility(true);
     }
 }
 

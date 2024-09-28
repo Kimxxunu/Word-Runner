@@ -7,6 +7,7 @@ using UnityEngine;
 public class WordController : MonoBehaviour
 {
     public float movementSpeed = 30f; // Word가 플레이어 방향으로 이동할 속도
+    public AudioClip explosionSound; // Inspector에서 연결할 폭발 사운드 클립
 
     private GameObject player;
 
@@ -32,6 +33,7 @@ public class WordController : MonoBehaviour
         {
             Debug.Log("확인 = "+transform.name);
             GameManager.instance.health--;
+            AudioManager.Instance.PlayExplosionSound(explosionSound);
             // 플레이어와 충돌하면 오브젝트를 제거 또는 비활성화
             Destroy(gameObject);
         }

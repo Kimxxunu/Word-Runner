@@ -11,6 +11,11 @@ public class TMPInputFieldManager : MonoBehaviour
     public Transform firePosition;
     public GameObject firePrefab;
 
+    public AudioSource audioSource;
+    public AudioClip laserSound; // Inspector에서 레이저 사운드 클립을 연결
+    public AudioClip kickSound;
+
+
     void Start()
     {
         // TMP_InputField의 onEndEdit 이벤트에 메서드 연결
@@ -19,6 +24,10 @@ public class TMPInputFieldManager : MonoBehaviour
         GameObject player = GameObject.Find("Player");
         _playerController = player.GetComponent<PlayerController>();
         _animator = player.GetComponent<Animator>();
+
+        // 오디오 소스 설정
+    audioSource = GetComponent<AudioSource>();
+    audioSource.clip = laserSound;
     }
 
     // 엔터 키가 눌렸을 때 호출되는 메서드
@@ -38,11 +47,14 @@ public class TMPInputFieldManager : MonoBehaviour
                         int random = Random.Range(0, 2);
                         string kick = random == 0 ? "Kick1" : "Kick2";
                         _animator.SetTrigger(kick);
+                        audioSource.PlayOneShot(kickSound);
                         Destroy(word, 0.3f);
                     }
                     else
                     {
                         _animator.SetTrigger("Laser");
+                        // 오디오 재생
+                        audioSource.Play();
                         GameObject prefab = Instantiate(firePrefab, firePosition.transform.position, Quaternion.identity);
                         prefab.GetComponent<FireMovement>().target = word;
                         prefab.transform.parent = firePosition;
